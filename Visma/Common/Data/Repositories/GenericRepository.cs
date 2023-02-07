@@ -1,42 +1,40 @@
-﻿using Common.Interfaces;
+﻿using Common.Entities;
+using Common.Interfaces;
 using LinqToDB;
+using System.Linq.Expressions;
 
 namespace Common.Data.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : Entity
     {
         protected readonly VismaDataConnection _context;
         public GenericRepository(VismaDataConnection context)
         {
             _context = context;
         }
-        public Task<int> Add(T entity)
+        public virtual T GetById(Guid id)
         {
-            return _context.InsertAsync(entity);
+            return _context.GetTable<T>().First(x => x.Id == id);
         }
-        public void AddRange(IEnumerable<T> entities)
+        public virtual IEnumerable<T> GetAll()
         {
-            _context.Set<T>().AddRange(entities);
+            return _context.GetTable<T>().ToList();
         }
-        public IEnumerable<T> Find(Expression<Func<T, bool>> expression)
+        public virtual IEnumerable<T> Find(Expression<Func<T, bool>> expression)
         {
-            return _context.GetTable<T>().SingleOrDefaultAsync(x => x.Id == id);
+            return _context.GetTable<T>().Where(expression);
         }
-        public IEnumerable<T> GetAll()
+        public virtual int Add(T entity)
         {
-            return _context.Set<T>().ToList();
+            return _context.Insert(entity);
         }
-        public T GetById(int id)
+        public virtual int Update(T entity)
         {
-            return _context.Set<T>().Find(id);
+            return _context.Update(entity);
         }
-        public void Remove(T entity)
+        public virtual int Remove(T entity)
         {
-            _context.Set<T>().Remove(entity);
-        }
-        public void RemoveRange(IEnumerable<T> entities)
-        {
-            _context.Set<T>().RemoveRange(entities);
+            return _context.Delete(entity);
         }
     }
 }

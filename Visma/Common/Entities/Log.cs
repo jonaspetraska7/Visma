@@ -1,11 +1,7 @@
-﻿using LinqToDB.Mapping;
-
-namespace Common.Entities
+﻿namespace Common.Entities
 {
-    public class Log
+    public class Log : Entity
     {
-        [PrimaryKey]
-        public Guid Id { get; set; }
         public DateTime TimeStamp { get; set; }
         public string Text { get; set; }
     }
