@@ -2,7 +2,7 @@
 using Common.Resources;
 using System.ComponentModel.DataAnnotations;
 
-namespace Common.Entities.Validation
+namespace Common.Entities.Attributes
 {
     public class BossValidationAttribute : ValidationAttribute
     {

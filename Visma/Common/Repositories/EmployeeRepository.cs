@@ -1,31 +1,16 @@
-﻿using Common.Entities;
+﻿using Common.Data;
+using Common.Entities;
 using Common.Entities.Enums;
 using Common.Interfaces;
-using Common.Resources;
 using LinqToDB;
 
-namespace Common.Data.Repositories
+namespace Common.Repositories
 {
     public class EmployeeRepository : GenericRepository<Employee>, IEmployeeRepository
     {
         public EmployeeRepository(VismaDataConnection context) : base(context)
         {
-
-        }
-
-        public override int Add(Employee entity)
-        {
-            if (entity.Role == Role.CEO)
-            {
-                var ceoExists = _context.Employees.Any(x => x.Role == Role.CEO);
-
-                if (ceoExists)
-                {
-                    throw new LinqToDBException(ValidationMessages.Ceo);
-                }
-            }
-
-            return base.Add(entity);
+            
         }
 
         public IEnumerable<Employee> FindByBossId(Guid bossId)
@@ -46,6 +31,11 @@ namespace Common.Data.Repositories
         public int UpdateSalary(Guid id, double salary)
         {
             return _context.Employees.Where(x => x.Id == id).Set(x => x.Salary, salary).Update();
+        }
+
+        public bool CeoExists()
+        {
+            return _context.Employees.Any(x => x.Role == Role.CEO);
         }
     }
 }

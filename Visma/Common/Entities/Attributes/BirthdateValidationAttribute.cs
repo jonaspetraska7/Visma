@@ -1,18 +1,18 @@
 ﻿using Common.Resources;
 using System.ComponentModel.DataAnnotations;
+using Common.Extensions;
 
-namespace Common.Entities.Validation
+namespace Common.Entities.Attributes
 {
-    public class EmploymentDateValidationAttribute : ValidationAttribute
+    public class BirthdateValidationAttribute : ValidationAttribute
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var entity = (Employee)validationContext.ObjectInstance;
-            var dateFrom = new DateTime(2000, 1, 1);
-                
-            if (entity.EmploymentDate < dateFrom && entity.EmploymentDate > DateTime.Now)
+
+            if (entity.Birthdate.Age() < 18 && entity.Birthdate.Age() > 70)
             {
-                return new ValidationResult(ValidationMessages.EmploymentDate);
+                return new ValidationResult(ValidationMessages.Birthdate);
             }
 
             return ValidationResult.Success;

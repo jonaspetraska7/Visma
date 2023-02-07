@@ -8,5 +8,6 @@ namespace Common.Interfaces
         IEnumerable<Employee> FindByBossId(Guid bossId);
         IEnumerable<Employee> FindByRole(string roleName);
         int UpdateSalary(Guid id, double salary);
+        bool CeoExists();
     }
 }

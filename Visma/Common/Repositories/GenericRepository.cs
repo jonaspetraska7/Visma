@@ -1,11 +1,12 @@
-﻿using Common.Entities;
+﻿using Common.Data;
+using Common.Entities;
 using Common.Interfaces;
 using LinqToDB;
 using System.Linq.Expressions;
 
-namespace Common.Data.Repositories
+namespace Common.Repositories
 {
-    public class GenericRepository<T> : IGenericRepository<T> where T : Entity
+    public abstract class GenericRepository<T> : IGenericRepository<T> where T : Entity
     {
         protected readonly VismaDataConnection _context;
         public GenericRepository(VismaDataConnection context)

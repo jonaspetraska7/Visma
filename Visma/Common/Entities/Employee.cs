@@ -1,5 +1,5 @@
 ﻿using Common.Entities.Enums;
-using Common.Entities.Validation;
+using Common.Entities.Attributes;
 using LinqToDB.Mapping;
 using System.ComponentModel.DataAnnotations;
 
