@@ -9,6 +9,7 @@ namespace Common.Interfaces
         IEnumerable<T> GetAll();
         IEnumerable<T> Find(Expression<Func<T, bool>> expression);
         int Add(T entity);
-        int Remove(T entity);
+        int Update(T entity);
+        int Remove(Guid id);
     }
 }

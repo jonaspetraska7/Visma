@@ -4,7 +4,7 @@ using System.Linq.Expressions;
 
 namespace Common.Services
 {
-    public class GenericRepositoryBasedService<T> : IGenericRepositoryBasedService<T> where T : Entity
+    public abstract class GenericRepositoryBasedService<T> : IGenericRepositoryBasedService<T> where T : Entity
     {
         private readonly IGenericRepository<T> _genericRepository;
         public GenericRepositoryBasedService(IGenericRepository<T> genericRepository)
@@ -20,6 +20,8 @@ namespace Common.Services
 
         public T GetById(Guid id) => _genericRepository.GetById(id);
 
-        public int Remove(T entity) => _genericRepository.Remove(entity);
+        public int Update(T entity) => _genericRepository.Update(entity);
+
+        public int Remove(Guid id) => _genericRepository.Remove(id);
     }
 }

@@ -3,7 +3,7 @@ using Common.Interfaces;
 
 namespace Common.Services
 {
-    public class EmployeeService : GenericRepositoryBasedService<Employee>, IEmployeeService
+    public abstract class EmployeeService : GenericRepositoryBasedService<Employee>, IEmployeeService
     {
         private readonly IEmployeeRepository _employeeRepository;
         public EmployeeService(IEmployeeRepository employeeRepository) : base(employeeRepository)

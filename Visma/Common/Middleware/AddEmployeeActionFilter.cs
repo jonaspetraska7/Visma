@@ -10,6 +10,7 @@ namespace Common.Middleware
     public class AddEmployeeActionFilter : ActionFilterAttribute
     {
         private readonly IEmployeeService _employeeService;
+
         public AddEmployeeActionFilter(IEmployeeService employeeService)
         {
             _employeeService = employeeService;

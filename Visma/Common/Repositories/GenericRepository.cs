@@ -33,9 +33,9 @@ namespace Common.Repositories
         {
             return _context.Update(entity);
         }
-        public virtual int Remove(T entity)
+        public virtual int Remove(Guid id)
         {
-            return _context.Delete(entity);
+            return _context.GetTable<T>().Where(x => x.Id == id).Delete();
         }
     }
 }
