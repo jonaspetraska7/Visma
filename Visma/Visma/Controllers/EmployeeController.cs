@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Visma.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class EmployeeController : ControllerBase
     {
@@ -15,13 +15,19 @@ namespace Visma.Controllers
             _employeeService = employeeService;
         }
 
-        [HttpGet("GetById")]
-        public IActionResult Get()
+        [HttpGet("GetAll")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public IActionResult GetAll()
         {
             return Ok(_employeeService.GetAll());
         }
 
         [HttpGet("GetById")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetById(Guid id)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -30,6 +36,9 @@ namespace Visma.Controllers
         }
 
         [HttpGet("FindByBossId")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult FindByBossId(Guid id)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -38,6 +47,9 @@ namespace Visma.Controllers
         }
 
         [HttpGet("FindByNameAndBirthdate")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult FindByNameAndBirthdate(string name, DateTime birthdayFrom, DateTime birthdayTo)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -46,7 +58,10 @@ namespace Visma.Controllers
         }
 
         [HttpPost("Add")]
-        [ServiceFilter(typeof(AddEmployeeActionFilter))]
+        [AddEmployeeActionFilterAttribute]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Add([FromBody] Employee employee)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -55,6 +70,9 @@ namespace Visma.Controllers
         }
 
         [HttpPut("Update")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Update([FromBody] Employee employee)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -63,6 +81,9 @@ namespace Visma.Controllers
         }
 
         [HttpPut("UpdateSalary")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult UpdateSalary(Guid id, double salary)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -71,6 +92,9 @@ namespace Visma.Controllers
         }
 
         [HttpDelete("Delete")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Delete(Guid id)
         {
             if (!ModelState.IsValid) return BadRequest();

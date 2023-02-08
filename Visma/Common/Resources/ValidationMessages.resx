@@ -123,6 +123,9 @@
   <data name="Boss" xml:space="preserve">
     <value>Employee with role CEO cannot have a boss id assigned.</value>
   </data>
+  <data name="BossEmpty" xml:space="preserve">
+    <value>Employee must have a boss id assigned.</value>
+  </data>
   <data name="Ceo" xml:space="preserve">
     <value>Cannot insert Employee with role CEO. Explanation : There can be only 1 employee with CEO role.</value>
   </data>

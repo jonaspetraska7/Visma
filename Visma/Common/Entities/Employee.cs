@@ -2,6 +2,7 @@
 using Common.Entities.Attributes;
 using LinqToDB.Mapping;
 using System.ComponentModel.DataAnnotations;
+using Common.Interfaces;
 
 namespace Common.Entities
 {
@@ -30,8 +31,6 @@ namespace Common.Entities
 
         [BossValidation]
         public Guid? BossId { get; set; }
-
-        public virtual Employee Boss { get; set; }
 
         [Required]
         [Column(CanBeNull = false)]

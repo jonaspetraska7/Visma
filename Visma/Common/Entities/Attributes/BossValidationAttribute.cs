@@ -14,7 +14,12 @@ namespace Common.Entities.Attributes
             {
                 return new ValidationResult(ValidationMessages.Boss);
             }
-            
+
+            if (entity.Role != Role.CEO && !entity.BossId.HasValue)
+            {
+                return new ValidationResult(ValidationMessages.BossEmpty);
+            }
+
             return ValidationResult.Success;
         }
     }

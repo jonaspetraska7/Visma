@@ -79,6 +79,15 @@ namespace Common.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee must have a boss id assigned..
+        /// </summary>
+        internal static string BossEmpty {
+            get {
+                return ResourceManager.GetString("BossEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannot insert Employee with role CEO. Explanation : There can be only 1 employee with CEO role..
         /// </summary>
         internal static string Ceo {

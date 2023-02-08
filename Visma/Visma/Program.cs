@@ -24,9 +24,10 @@ builder.Services.AddLinqToDBContext<VismaDataConnection>((provider, options) => 
     .UseDefaultLogging(provider);
 });
 
-builder.Services.AddScoped<AddEmployeeActionFilter>();
+
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<AddEmployeeActionFilter>();
 
 var app = builder.Build();
 
