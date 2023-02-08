@@ -25,80 +25,73 @@ namespace Visma.Controllers
         }
 
         [HttpGet("GetById")]
+        [ModelStateIsValidActionFilter]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult GetById(Guid id)
         {
-            if (!ModelState.IsValid) return BadRequest();
-
             return Ok(_employeeService.GetById(id));
         }
 
         [HttpGet("FindByBossId")]
+        [ModelStateIsValidActionFilter]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult FindByBossId(Guid id)
         {
-            if (!ModelState.IsValid) return BadRequest();
-
             return Ok(_employeeService.FindByBossId(id));
         }
 
         [HttpGet("FindByNameAndBirthdate")]
+        [ModelStateIsValidActionFilter]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult FindByNameAndBirthdate(string name, DateTime birthdayFrom, DateTime birthdayTo)
         {
-            if (!ModelState.IsValid) return BadRequest();
-
             return Ok(_employeeService.FindByNameAndBirthdate(name, birthdayFrom, birthdayTo));
         }
 
         [HttpPost("Add")]
+        [ModelStateIsValidActionFilter]
         [AddEmployeeActionFilterAttribute]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Add([FromBody] Employee employee)
         {
-            if (!ModelState.IsValid) return BadRequest();
-
             return Ok(_employeeService.Add(employee));
         }
 
         [HttpPut("Update")]
+        [ModelStateIsValidActionFilter]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Update([FromBody] Employee employee)
         {
-            if (!ModelState.IsValid) return BadRequest();
-
             return Ok(_employeeService.Update(employee));
         }
 
         [HttpPut("UpdateSalary")]
+        [ModelStateIsValidActionFilter]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult UpdateSalary(Guid id, double salary)
         {
-            if (!ModelState.IsValid) return BadRequest();
-
             return Ok(_employeeService.UpdateSalary(id, salary));
         }
 
         [HttpDelete("Delete")]
+        [ModelStateIsValidActionFilter]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Delete(Guid id)
         {
-            if (!ModelState.IsValid) return BadRequest();
-
             return Ok(_employeeService.Remove(id));
         }
     }
