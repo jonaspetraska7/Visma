@@ -27,7 +27,7 @@ builder.Services.AddLinqToDBContext<VismaDataConnection>((provider, options) => 
 
 builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 builder.Services.AddScoped<IEmployeeService, EmployeeService>();
-builder.Services.AddScoped<AddEmployeeActionFilterAttribute>();
+builder.Services.AddScoped<AddEmployeeActionFilter>();
 builder.Services.AddScoped<ModelStateIsValidActionFilterAttribute>();
 
 var app = builder.Build();

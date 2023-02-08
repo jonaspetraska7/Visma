@@ -9,8 +9,13 @@ namespace Common.Entities.Attributes
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
             var entity = (Employee) validationContext.ObjectInstance;
-            
-            if(entity.Role == Role.CEO && entity.BossId.HasValue)
+
+            if (entity == null || value == null || entity.BossId == null)
+            {
+                return ValidationResult.Success;
+            }
+
+            if (entity.Role == Role.CEO && entity.BossId.HasValue)
             {
                 return new ValidationResult(ValidationMessages.Boss);
             }

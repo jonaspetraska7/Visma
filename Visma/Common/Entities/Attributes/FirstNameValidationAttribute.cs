@@ -7,7 +7,12 @@ namespace Common.Entities.Attributes
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            var entity = (Employee)validationContext.ObjectInstance;
+            var entity = (Employee) validationContext.ObjectInstance;
+
+            if (entity == null || value == null || entity.LastName == null)
+            {
+                return ValidationResult.Success;
+            }
 
             if (entity.FirstName.ToLower() == entity.LastName.ToLower())
             {

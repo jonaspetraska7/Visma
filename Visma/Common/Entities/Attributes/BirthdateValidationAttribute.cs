@@ -8,7 +8,12 @@ namespace Common.Entities.Attributes
     {
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
-            var entity = (Employee)validationContext.ObjectInstance;
+            var entity = (Employee) validationContext.ObjectInstance;
+
+            if (entity == null || value == null)
+            {
+                return ValidationResult.Success;
+            }
 
             if (entity.Birthdate.Age() < 18 && entity.Birthdate.Age() > 70)
             {

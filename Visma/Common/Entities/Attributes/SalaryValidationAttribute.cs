@@ -9,6 +9,11 @@ namespace Common.Entities.Attributes
         {
             var entity = (Employee)validationContext.ObjectInstance;
 
+            if (entity == null || value == null)
+            {
+                return ValidationResult.Success;
+            }
+
             if (entity.Salary < 0)
             {
                 return new ValidationResult(ValidationMessages.Salary);
