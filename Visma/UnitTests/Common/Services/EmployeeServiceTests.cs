@@ -1,10 +1,12 @@
 ﻿using Common.Entities;
+using Common.Entities.Enums;
 using Common.Interfaces;
 using Common.Services;
 using NSubstitute;
 using NUnit.Framework;
 using System;
 using System.Collections.Generic;
+using System.Text.Json;
 
 namespace UnitTests.Common.Services
 {
@@ -80,6 +82,22 @@ namespace UnitTests.Common.Services
             var result = _sut.UpdateSalary(id, salary);
 
             Assert.IsTrue(result == 1);
+        }
+
+        [Test]
+        public void GetEmployeeCountAndAverageSalaryByRole_Should_ReturnResult_When_RoleExists()
+        {
+            var expected = new EmployeeCountAndAverageSalaryResult { Role = Role.CEO, Count = 2, SalaryAverage = 400d };
+            var expectedList = new List<EmployeeCountAndAverageSalaryResult> { expected };
+            var entry1 = new Employee() { Role = 0, Salary = 200 };
+            var entry2 = new Employee() { Role = 0, Salary = 600 };
+            var employeeList = new List<Employee> { entry1, entry2 };
+
+            _employeeRepository.GetAll().Returns(employeeList);
+
+            var result = _sut.GetEmployeeCountAndAverageSalaryByRole(Role.CEO);
+
+            Assert.AreEqual(JsonSerializer.Serialize(expectedList), JsonSerializer.Serialize(result));
         }
     }
 }

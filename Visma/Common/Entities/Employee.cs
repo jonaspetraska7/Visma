@@ -2,7 +2,6 @@
 using Common.Entities.Attributes;
 using LinqToDB.Mapping;
 using System.ComponentModel.DataAnnotations;
-using Common.Interfaces;
 
 namespace Common.Entities
 {
