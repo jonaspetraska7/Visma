@@ -12,13 +12,13 @@ namespace Common.Services
             _employeeRepository = employeeRepository;
         }
 
-        public List<EmployeeCountAndAverageSalaryResult> GetEmployeeCountAndAverageSalaryByRole(Role role)
+        public EmployeeCountAndAverageSalaryResult GetEmployeeCountAndAverageSalaryByRole(Role role)
         {
             var employees = _employeeRepository.GetAll();
             var employeeCountAndAvgSalaryByRole = employees.GroupBy(x => x.Role, (key, g) =>
                 new EmployeeCountAndAverageSalaryResult() { Role = key, Count = g.Count(), SalaryAverage = g.Average(x => x.Salary) }).Where(x => x.Role == role).ToList();
 
-            return employeeCountAndAvgSalaryByRole;
+            return employeeCountAndAvgSalaryByRole?.FirstOrDefault() ?? new EmployeeCountAndAverageSalaryResult() { Role = role };
         }
 
         public bool CeoExists() => _employeeRepository.CeoExists();

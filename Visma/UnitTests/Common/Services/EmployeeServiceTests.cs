@@ -88,7 +88,6 @@ namespace UnitTests.Common.Services
         public void GetEmployeeCountAndAverageSalaryByRole_Should_ReturnResult_When_RoleExists()
         {
             var expected = new EmployeeCountAndAverageSalaryResult { Role = Role.CEO, Count = 2, SalaryAverage = 400d };
-            var expectedList = new List<EmployeeCountAndAverageSalaryResult> { expected };
             var entry1 = new Employee() { Role = 0, Salary = 200 };
             var entry2 = new Employee() { Role = 0, Salary = 600 };
             var employeeList = new List<Employee> { entry1, entry2 };
@@ -97,7 +96,7 @@ namespace UnitTests.Common.Services
 
             var result = _sut.GetEmployeeCountAndAverageSalaryByRole(Role.CEO);
 
-            Assert.AreEqual(JsonSerializer.Serialize(expectedList), JsonSerializer.Serialize(result));
+            Assert.AreEqual(JsonSerializer.Serialize(expected), JsonSerializer.Serialize(result));
         }
     }
 }

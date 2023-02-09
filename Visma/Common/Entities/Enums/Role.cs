@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Common.Entities.Enums
+﻿namespace Common.Entities.Enums
 {
     public enum Role
     {
         CEO,
-        Other
+        Other,
+        Test
     }
 }
