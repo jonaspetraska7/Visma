@@ -13,9 +13,9 @@ namespace Common.Repositories
         {
             _context = context;
         }
-        public virtual T GetById(Guid id)
+        public virtual T? GetById(Guid id)
         {
-            return _context.GetTable<T>().First(x => x.Id == id);
+            return _context.GetTable<T>().FirstOrDefault(x => x.Id == id);
         }
         public virtual IEnumerable<T> GetAll()
         {

@@ -5,7 +5,7 @@ namespace Common.Interfaces
 {
     public interface IGenericRepository<T> where T : Entity
     {
-        T GetById(Guid id);
+        T? GetById(Guid id);
         IEnumerable<T> GetAll();
         IEnumerable<T> Find(Expression<Func<T, bool>> expression);
         Guid Add(T entity);
