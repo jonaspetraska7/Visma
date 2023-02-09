@@ -12,7 +12,7 @@ namespace Common.Services
             _genericRepository = genericRepository;
         }
 
-        public int Add(T entity) => _genericRepository.Add(entity);
+        public Guid Add(T entity) => _genericRepository.Add(entity);
 
         public IEnumerable<T> Find(Expression<Func<T, bool>> expression) => _genericRepository.Find(expression);
 

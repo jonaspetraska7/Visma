@@ -15,7 +15,7 @@ namespace Common.Entities.Attributes
                 return ValidationResult.Success;
             }
 
-            if (entity.Birthdate.Age() < 18 && entity.Birthdate.Age() > 70)
+            if (entity.Birthdate.Age() < 18 || entity.Birthdate.Age() > 70)
             {
                 return new ValidationResult(ValidationMessages.Birthdate);
             }

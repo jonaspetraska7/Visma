@@ -10,7 +10,7 @@ namespace Common.Entities.Attributes
         {
             var entity = (Employee) validationContext.ObjectInstance;
 
-            if (entity == null || value == null || entity.BossId == null)
+            if (entity == null)
             {
                 return ValidationResult.Success;
             }

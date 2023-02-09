@@ -25,9 +25,13 @@ namespace Common.Repositories
         {
             return _context.GetTable<T>().Where(expression);
         }
-        public virtual int Add(T entity)
+        public virtual Guid Add(T entity)
         {
-            return _context.Insert(entity);
+            entity.Id = Guid.NewGuid();
+
+            _context.Insert(entity);
+
+            return entity.Id;
         }
         public virtual int Update(T entity)
         {

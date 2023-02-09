@@ -10,9 +10,9 @@ namespace Visma.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly ILogger _logger;
+        private readonly ILogger<EmployeeController> _logger;
         private readonly IEmployeeService _employeeService;
-        public EmployeeController(ILogger logger, IEmployeeService employeeService)
+        public EmployeeController(ILogger<EmployeeController> logger, IEmployeeService employeeService)
         {
             _logger = logger;
             _employeeService = employeeService;
@@ -108,8 +108,8 @@ namespace Visma.Controllers
         }
 
         [HttpPost("Add")]
-        [ModelStateIsValidActionFilter]
         [AddEmployeeActionFilterAttribute]
+        [ModelStateIsValidActionFilter]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
@@ -127,6 +127,7 @@ namespace Visma.Controllers
         }
 
         [HttpPut("Update")]
+        [AddEmployeeActionFilterAttribute]
         [ModelStateIsValidActionFilter]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]

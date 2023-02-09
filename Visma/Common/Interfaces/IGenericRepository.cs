@@ -8,7 +8,7 @@ namespace Common.Interfaces
         T GetById(Guid id);
         IEnumerable<T> GetAll();
         IEnumerable<T> Find(Expression<Func<T, bool>> expression);
-        int Add(T entity);
+        Guid Add(T entity);
         int Update(T entity);
         int Remove(Guid id);
     }

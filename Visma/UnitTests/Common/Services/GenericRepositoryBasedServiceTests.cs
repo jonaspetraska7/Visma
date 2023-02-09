@@ -27,13 +27,15 @@ namespace UnitTests.Common.Services
         }
 
         [Test]
-        public void Add_Should_Return1_When_Repository_Returns1()
+        public void Add_Should_ReturnGuid_When_Repository_ReturnsGuid()
         {
-            _employeeRepository.Add(_employee).Returns(1);
+            var guid = Guid.NewGuid();
+
+            _employeeRepository.Add(_employee).Returns(guid);
 
             var result = _sut.Add(_employee);
 
-            Assert.IsTrue(result == 1);
+            Assert.IsTrue(result == guid);
         }
 
         [Test]

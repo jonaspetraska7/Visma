@@ -15,7 +15,7 @@ namespace Common.Entities.Attributes
                 return ValidationResult.Success;
             }
 
-            if (entity.EmploymentDate < dateFrom && entity.EmploymentDate > DateTime.Now)
+            if (entity.EmploymentDate < dateFrom || entity.EmploymentDate > DateTime.Now)
             {
                 return new ValidationResult(ValidationMessages.EmploymentDate);
             }
