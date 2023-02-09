@@ -30,6 +30,10 @@ namespace Common.Repositories
 
         public int UpdateSalary(Guid id, double salary)
         {
+            if(salary < 0)
+            {
+                return -1;
+            }
             return _context.Employees.Where(x => x.Id == id).Set(x => x.Salary, salary).Update();
         }
 
